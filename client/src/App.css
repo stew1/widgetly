@@ -1,0 +1,125 @@
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+html,
+body,
+.App,
+#root {
+  height: 100%;
+}
+
+.card-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.category {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-label {
+  background: skyblue;
+  font-size: 25px;
+}
+
+.card {
+  border-top: 1px solid steelblue;
+  display: flex;
+  padding: 10px;
+}
+
+.product-logo {
+  font-size: 60px;
+  margin: auto;
+  padding-left: 30px;
+}
+
+.product-profile {
+  flex-grow: 1;
+}
+
+.product-cart {
+  flex-grow: 1;
+  margin: auto;
+}
+
+.details {
+  flex-grow: 1;
+}
+
+.product-name {
+}
+
+.cart-add-button {
+  float: right;
+  border-radius: 6px;
+  background: #ffa137e3;
+  font-size: 14px;
+  padding: 8px 40px;
+  text-decoration: none;
+  box-shadow: 2px 2px #666;
+}
+
+.filter-panel {
+  width: 250px;
+  float: left;
+  padding-top: 25px;
+  border: 1px solid black;
+  height: 100%;
+  text-align: center;
+}
+
+.navbar {
+  width: 100%;
+  height: 50px;
+  background: #0d4c80c9;
+  display: flex;
+  color: white;
+}
+
+.site-logo {
+  font-family: Apple Chancery, cursive;
+  font-size: 32px;
+  flex-grow: 1;
+  padding-left: 15px;
+}
+
+.navigation {
+  display: inline-flex;
+  margin: auto;
+  padding-right: 15px;
+}
+
+.navigation div {
+  padding: 5px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
