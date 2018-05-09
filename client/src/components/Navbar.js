@@ -8,7 +8,7 @@ class Navbar extends Component {
         <div className="navigation">
           <div>Widgets</div>
           <div>Inventory</div>
-          <div>Cart</div>
+          <div onClick={() => this.props.displayCart()}>Cart</div>
         </div>
       </div>
     );

@@ -3,9 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var widgetsRouter = require('./routes/widgets');
+var categoriesRouter = require('./routes/categories');
 
 var app = express();
 
@@ -19,8 +22,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Database connection
+app.use(function(req, res, next) {
+  res.locals.connection = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'ASas00126566',
+    database: 'widgetly',
+    connectionLimit: 10,
+  });
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/widgets', widgetsRouter);
+app.use('/api/categories', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,7 +5,13 @@ class Category extends Component {
   render() {
     const { widget } = this.props;
     const cards = widget.products.map((product, index) => {
-      return <Card key={index} product={product} />;
+      return (
+        <Card
+          key={index}
+          product={product}
+          addProductToCart={this.props.addProductToCart}
+        />
+      );
     });
 
     return (

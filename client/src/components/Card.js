@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Card extends Component {
   render() {
     const { product } = this.props;
-    console.log(product);
     return (
       <div className="card">
         <div className="product-profile">
@@ -17,7 +16,12 @@ class Card extends Component {
           <p>Finish: {product.finish}</p>
         </div>
         <div className="product-cart">
-          <a className="cart-add-button">Add to Cart</a>
+          <a
+            className="cart-add-button"
+            onClick={() => this.props.addProductToCart(product)}
+          >
+            Add to Cart
+          </a>
         </div>
       </div>
     );

@@ -9,7 +9,13 @@ class CardPanel extends Component {
   render() {
     const { widgets } = this.props;
     const categories = widgets.map((widget, index) => {
-      return <Category key={index} widget={widget} />;
+      return (
+        <Category
+          key={index}
+          widget={widget}
+          addProductToCart={this.props.addProductToCart}
+        />
+      );
     });
 
     return <div className="card-panel">{categories}</div>;
