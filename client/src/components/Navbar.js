@@ -6,8 +6,8 @@ class Navbar extends Component {
       <div className="navbar">
         <div className="site-logo">Widgetly</div>
         <div className="navigation">
-          <div>Widgets</div>
-          <div>Inventory</div>
+          <div onClick={() => this.props.displayWidgets()}>Widgets</div>
+          <div onClick={() => this.props.displayInventory()}>Inventory</div>
           <div onClick={() => this.props.displayCart()}>Cart</div>
         </div>
       </div>
