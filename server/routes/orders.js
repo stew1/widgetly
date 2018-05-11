@@ -1,76 +1,37 @@
 var express = require('express');
+var async = require('async');
 var router = express.Router();
 
-/* GET widgets listing. */
-router.get('/', function(req, res, next) {
-  res.locals.connection.query(
-    'SELECT p.*, c.categoryName FROM Product AS p JOIN Category AS c ON p.categoryID = c.categoryID',
-    function(error, results, fields) {
-      if (error) {
-        res.send(JSON.stringify({ status: 500, error: error, response: null }));
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.send(
-          JSON.stringify({ status: 200, error: null, response: results })
-        );
-        //If there is no error, all is good and response is 200OK.
-      }
-    }
-  );
-});
-
+/* Create Order */
 router.post('/create', function(req, res, next) {
   var values = [[req.body.productID, req.body.quantity]];
-  console.log(values);
-  res.locals.connection.query(
-    'INSERT INTO OrderProduct (`productID`, `quantity`) VALUES ?',
-    [values],
-    function(error, results, fields) {
-      if (error) {
-        res.send(JSON.stringify({ status: 500, error: error, response: null }));
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.send(
-          JSON.stringify({ status: 200, error: null, response: results })
-        );
-        //If there is no error, all is good and response is 200OK.
-      }
-    }
-  );
-});
+  var query1 = 'INSERT INTO `Widgetly`.`Order` () VALUES ();';
+  var query2 =
+    'INSERT INTO `Widgetly`.`OrderProduct` (`productID`,`quanity`) VALUES ?;';
 
-router.get('/finish/:finish', function(req, res, next) {
-  res.locals.connection.query(
-    'SELECT p.*, c.categoryName FROM Product AS p JOIN Category AS c ON p.categoryID = c.categoryID WHERE p.finish = ?',
-    [req.params.finish],
-    function(error, results, fields) {
-      if (error) {
-        res.send(JSON.stringify({ status: 500, error: error, response: null }));
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.send(
-          JSON.stringify({ status: 200, error: null, response: results })
-        );
-        //If there is no error, all is good and response is 200OK.
-      }
-    }
-  );
-});
+  var return_data = {};
 
-router.get('/finish/:finish', function(req, res, next) {
-  res.locals.connection.query(
-    'SELECT p.*, c.categoryName FROM Product AS p JOIN Category AS c ON p.categoryID = c.categoryID WHERE p.finish = ?',
-    [req.params.finish],
-    function(error, results, fields) {
-      if (error) {
-        res.send(JSON.stringify({ status: 500, error: error, response: null }));
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.send(
-          JSON.stringify({ status: 200, error: null, response: results })
-        );
-        //If there is no error, all is good and response is 200OK.
-      }
+  async.parallel(
+    [
+      function(parallel_done) {
+        res.locals.connection.query(query1, function(err, results) {
+          if (err) return parallel_done(err);
+          return_data.table1 = results;
+          parallel_done();
+        });
+      },
+      function(parallel_done) {
+        res.locals.connection.query(query2, [values], function(err, results) {
+          if (err) return parallel_done(err);
+          return_data.table2 = results;
+          parallel_done();
+        });
+      },
+    ],
+    function(err) {
+      if (err) console.log(err);
+      res.locals.connection.end();
+      res.send(return_data);
     }
   );
 });

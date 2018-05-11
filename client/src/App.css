@@ -32,8 +32,6 @@ body,
 }
 
 .category {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   display: flex;
   flex-direction: column;
 }
@@ -44,14 +42,23 @@ body,
 }
 
 .card {
-  border-top: 1px solid steelblue;
   display: flex;
   padding: 10px;
+  align-items: center;
+  width: 90%;
+}
+
+.card div {
+  flex-basis: 100%;
+}
+
+.card-break {
+  width: 100%;
+  margin: 0px;
 }
 
 .product-logo {
   font-size: 60px;
-  margin: auto;
   padding-left: 30px;
 }
 
@@ -61,7 +68,6 @@ body,
 
 .product-cart {
   flex-grow: 1;
-  margin: auto;
 }
 
 .details {
@@ -69,10 +75,12 @@ body,
 }
 
 .product-name {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.cart-add-button {
-  float: right;
+.cart-add-button,
+.edit-button {
   border-radius: 6px;
   background: #ffa137e3;
   font-size: 14px;
@@ -80,6 +88,11 @@ body,
   text-decoration: none;
   box-shadow: 2px 2px #666;
   cursor: pointer;
+  float: right;
+}
+
+.edit-button {
+  max-width: 25px;
 }
 
 .search-bar {
@@ -99,6 +112,33 @@ body,
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+
+.inventory,
+.cart {
+  width: 80%;
+  margin: auto;
+  padding-top: 25px;
+}
+
+.inventory-row,
+.cart-row {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.cart-row {
+  flex-direction: column;
+  align-items: center;
+}
+
+.inventory-row div {
+  flex-grow: 1;
+  flex-basis: 100%;
+}
+
+.edit-quantity {
+  width: 55px;
 }
 
 .navbar {

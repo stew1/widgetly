@@ -24,6 +24,7 @@ class App extends Component {
     this.displayInventory = this.displayInventory.bind(this);
     this.displayWidgets = this.displayWidgets.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
+    this.loadAllWidgets = this.loadAllWidgets.bind(this);
   }
 
   componentDidMount() {
@@ -36,23 +37,7 @@ class App extends Component {
     //   body: JSON.stringify({ productID: 1, quantity: 100 }),
     // });
     // Merge categories and products for complete widgets JSON structure
-    Promise.all([this.loadWidgets(), this.loadCategories()]).then(values => {
-      let widgets = [];
-      let products = values[0];
-      let categories = values[1];
-      categories.forEach(c => {
-        let category = {
-          category: c.categoryName,
-          products: products.filter(
-            widget => widget.categoryID === c.categoryID
-          ),
-        };
-        widgets.push(category);
-      });
-      this.setState({
-        widgets: widgets,
-      });
-    });
+    this.loadAllWidgets();
   }
 
   toggleFilter(filter) {
@@ -76,6 +61,26 @@ class App extends Component {
     return fetch('/api/categories')
       .then(res => res.json())
       .then(categories => categories.response);
+  }
+
+  loadAllWidgets() {
+    Promise.all([this.loadWidgets(), this.loadCategories()]).then(values => {
+      let widgets = [];
+      let products = values[0];
+      let categories = values[1];
+      categories.forEach(c => {
+        let category = {
+          category: c.categoryName,
+          products: products.filter(
+            widget => widget.categoryID === c.categoryID
+          ),
+        };
+        widgets.push(category);
+      });
+      this.setState({
+        widgets: widgets,
+      });
+    });
   }
 
   addProductToCart(product, quantity) {
@@ -111,6 +116,7 @@ class App extends Component {
   }
 
   render() {
+    // Set up page layout for widgets, inventory, cart "pages"
     let widgetsPage = (
       <React.Fragment>
         <FilterPanel
@@ -133,7 +139,10 @@ class App extends Component {
 
     let inventoryPage = (
       <React.Fragment>
-        <Inventory widgets={this.state.widgets} />
+        <Inventory
+          widgets={this.state.widgets}
+          loadAllWidgets={this.loadAllWidgets}
+        />
       </React.Fragment>
     );
 

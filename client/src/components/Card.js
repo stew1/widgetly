@@ -6,14 +6,18 @@ class Card extends Component {
     return (
       <div className="card">
         <div className="product-profile">
-          <h3 className="product-name">{product.name}</h3>
-          <p className="product-logo" style={{ color: product.finish }}>
+          <div className="product-name">{product.name}</div>
+          <div className="product-logo" style={{ color: product.finish }}>
             W
-          </p>
+          </div>
         </div>
         <div className="details">
           <p>Size: {product.size}</p>
           <p>Finish: {product.finish}</p>
+          <p>Stock: {product.quantity}</p>
+        </div>
+        <div className="description">
+          <p>{product.description}</p>
         </div>
         <div className="product-cart">
           <a

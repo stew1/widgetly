@@ -6,11 +6,14 @@ class Category extends Component {
     const { widget } = this.props;
     const cards = widget.products.map((product, index) => {
       return (
-        <Card
-          key={index}
-          product={product}
-          addProductToCart={this.props.addProductToCart}
-        />
+        <React.Fragment key={`${product.productID} - ${index}`}>
+          <Card
+            key={index}
+            product={product}
+            addProductToCart={this.props.addProductToCart}
+          />
+          <hr className="card-break" />
+        </React.Fragment>
       );
     });
 
