@@ -28,15 +28,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // fetch('/api/orders/create', {
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   method: 'POST',
-    //   body: JSON.stringify({ productID: 1, quantity: 100 }),
-    // });
-    // Merge categories and products for complete widgets JSON structure
     this.loadAllWidgets();
   }
 

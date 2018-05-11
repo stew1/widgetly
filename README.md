@@ -7,14 +7,16 @@
 ### Setup
 
 * Clone the project
-* cd client
+* cd widgetly/client
 * npm install
-* npm start
 * cd ../data
-* mysql -u root -p widgetly-dump.sql
+* mysql -u root -p < widgetly-dump.sql
 * cd ../server
 * npm install
 * PORT=3001 node bin/www
+* cd ../client
+* npm start
+* localhost:3000
 
 ### Room for Improvement
 
