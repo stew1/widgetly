@@ -22,13 +22,14 @@ html,
 body,
 .App,
 #root {
-  height: 100%;
+  height: auto;
 }
 
 .card-panel {
   display: flex;
   flex-direction: column;
   height: 100%;
+  border-left: 1px solid black;
 }
 
 .category {
@@ -103,7 +104,6 @@ body,
   width: 250px;
   float: left;
   padding: 25px;
-  border: 1px solid black;
   height: 100%;
   text-align: center;
 }
