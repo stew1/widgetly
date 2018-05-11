@@ -69,6 +69,11 @@ body,
 
 .product-cart {
   flex-grow: 1;
+  text-align: center;
+}
+
+.order-quantity {
+  padding-top: 45px;
 }
 
 .details {

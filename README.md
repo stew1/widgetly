@@ -36,6 +36,7 @@
 * Filter by category
 * View inventory
 * Edit widget quantities
+* Create Orders
 * Rest endpoints:
   * get widgets: /api/widgets
   * get widgets by category: /api/widgets/category/:id

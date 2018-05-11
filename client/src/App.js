@@ -76,7 +76,12 @@ class App extends Component {
 
   addProductToCart(product, quantity) {
     let cartCopy = this.state.cart.slice();
-    cartCopy.push(product);
+    let order = {
+      product: product,
+      quantity: quantity,
+    };
+
+    cartCopy.push(order);
     this.setState({
       cart: cartCopy,
     });
