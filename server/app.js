@@ -33,10 +33,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Database connection
 app.use(function(req, res, next) {
   res.locals.connection = mysql.createPool({
-    host: 'localhost',
-    user: 'widgetly-user',
-    password: 'w1dg3tly',
-    database: 'widgetly',
+    host: 'us-cdbr-iron-east-04.cleardb.net:3306',
+    user: 'b786ea85e1aed3',
+    password: '75df1ad3',
+    database: 'heroku_b9822d41498cfcc',
     connectionLimit: 10,
   });
   next();
