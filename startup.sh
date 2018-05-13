@@ -8,4 +8,4 @@ cd ../server/
 npm i
 mkdir ./public
 cp -r ../client/build/* ./public/
-start ./bin/www
+npm start ./bin/www
