@@ -114,7 +114,7 @@ class App extends Component {
   render() {
     // Set up page layout for widgets, inventory, cart "pages"
     let widgetsPage = (
-      <React.Fragment>
+      <div className="content">
         <FilterPanel
           widgets={this.state.widgets}
           toggleFilter={this.toggleFilter}
@@ -124,7 +124,7 @@ class App extends Component {
           filters={this.state.filters}
           addProductToCart={this.addProductToCart}
         />
-      </React.Fragment>
+      </div>
     );
 
     let cartPage = (

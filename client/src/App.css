@@ -22,12 +22,17 @@ html,
 body,
 .App,
 #root {
-  height: auto;
+  height: 100%S;
+}
+
+.content {
+  display: flex;
 }
 
 .card-panel {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   height: 100%;
   border-left: 1px solid black;
 }

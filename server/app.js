@@ -28,7 +28,8 @@ app.use(
     extended: true,
   })
 );
-app.use(express.static(path.join(__dirname, 'public')));
+console.log(__dirname);
+app.use(express.static(path.join(__dirname, '../client')));
 
 //Database connection
 app.use(function(req, res, next) {
