@@ -1,5 +1,10 @@
 {
   "name": "widgetly",
   "version": "0.1.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "start": "node server/bin/www",
+    "heroku-postbuild":
+      "cd ../client && npm install --only=dev && npm install && npm run build"
+  }
 }
