@@ -60,9 +60,9 @@ router.get('/finish/:finish', function(req, res, next) {
 /* Update widget quantity. */
 router.put('/quantity', function(req, res, next) {
   var sql =
-    'UPDATE `Widgetly`.`Product` SET `quantity` =' +
+    'UPDATE Product SET quantity =' +
     res.locals.connection.escape(req.body.quantity) +
-    ' WHERE `productID`= ' +
+    ' WHERE productID= ' +
     res.locals.connection.escape(req.body.product);
   res.locals.connection.query(sql, function(error, results, fields) {
     if (error) {
