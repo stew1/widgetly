@@ -32,7 +32,6 @@ router.post('/create', function(req, res, next) {
 
   async.parallel(orderQueries, function(err) {
     if (err) console.log(err);
-    res.locals.connection.end();
     res.send(return_data);
   });
 });
