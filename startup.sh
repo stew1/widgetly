@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd /server
+cd server/
 npm i --silent --production
 node ./bin/www
