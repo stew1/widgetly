@@ -13,7 +13,7 @@ class Inventory extends Component {
 
   handleChange(event) {
     this.setState({
-      value: parseInt(event.target.value),
+      value: parseInt(event.target.value, 10),
     });
   }
 
@@ -52,7 +52,8 @@ class Inventory extends Component {
           <input
             className="edit-quantity"
             type="text"
-            value={this.state.value ? this.state.value : product.quantity}
+            value={this.state.value ? this.state.value : ''}
+            placeholder={product.quantity}
             onChange={this.handleChange}
           />
         </div>

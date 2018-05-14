@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CardPanel from './components/CardPanel';
 import FilterPanel from './components/FilterPanel';
@@ -16,6 +15,7 @@ class App extends Component {
       displayInventory: false,
       displayWidgets: true,
       widgets: [],
+      search: '',
       filters: new Set(),
     };
 
@@ -25,10 +25,17 @@ class App extends Component {
     this.displayWidgets = this.displayWidgets.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
     this.loadAllWidgets = this.loadAllWidgets.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   componentDidMount() {
     this.loadAllWidgets();
+  }
+
+  handleSearchChange(event) {
+    this.setState({
+      search: event.target.value.toLowerCase(),
+    });
   }
 
   toggleFilter(filter) {
@@ -118,10 +125,13 @@ class App extends Component {
         <FilterPanel
           widgets={this.state.widgets}
           toggleFilter={this.toggleFilter}
+          handleSearchChange={this.handleSearchChange}
+          search={this.state.search}
         />
         <CardPanel
           widgets={this.state.widgets}
           filters={this.state.filters}
+          search={this.state.search}
           addProductToCart={this.addProductToCart}
         />
       </div>
@@ -129,7 +139,7 @@ class App extends Component {
 
     let cartPage = (
       <React.Fragment>
-        <Cart cart={this.state.cart} />
+        <Cart cart={this.state.cart} loadAllWidgets={this.loadAllWidgets} />
       </React.Fragment>
     );
 
@@ -154,6 +164,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar
+          cart={this.state.cart}
           displayCart={this.displayCart}
           displayInventory={this.displayInventory}
           displayWidgets={this.displayWidgets}

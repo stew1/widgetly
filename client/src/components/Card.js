@@ -13,7 +13,7 @@ class Card extends Component {
 
   handleChange(event) {
     this.setState({
-      value: parseInt(event.target.value),
+      value: parseInt(event.target.value, 10),
     });
   }
 
@@ -49,9 +49,19 @@ class Card extends Component {
             <input
               className="edit-quantity"
               type="text"
-              value={this.state.value ? this.state.value : 0}
+              value={this.state.value ? this.state.value : ''}
+              placeholder="0"
               onChange={this.handleChange}
             />
+            <p
+              className={
+                this.state.value <= product.quantity || isNaN(this.state.value)
+                  ? 'hidden'
+                  : 'warning'
+              }
+            >
+              Quantity not available
+            </p>
           </div>
         </div>
       </div>

@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import Category from './Category.js';
 
 class CardPanel extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { widgets, filters } = this.props;
+    const { widgets, filters, search } = this.props;
+    //filter widgets by category selection
     const filteredWidgets = widgets.filter(widget => {
       return filters.size === 0 ? true : filters.has(widget.category);
     });
+
     const categories = filteredWidgets.map((widget, index) => {
       return (
         <Category
           key={index}
           widget={widget}
+          search={search}
           addProductToCart={this.props.addProductToCart}
         />
       );

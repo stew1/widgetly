@@ -16,22 +16,47 @@ class Cart extends Component {
       },
       method: 'POST',
       body: JSON.stringify({ orders: ordersArray }),
-    });
+    })
+      .then(res => {
+        cart.forEach(order => {
+          //Update quantities
+          this.updateQuantity(order.product, order.quantity);
+        });
+      })
+      .then(result => {
+        this.props.loadAllWidgets();
+      });
+  }
+
+  updateQuantity(product, quantity) {
+    fetch('/api/widgets/quantity', {
+      method: 'PUT',
+      body: JSON.stringify({
+        product: product.productID,
+        quantity: product.quantity - quantity,
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        this.setState({
+          product: null,
+          value: null,
+        });
+      });
   }
 
   renderCartContents(cart) {
+    if (cart.length === 0) {
+      return <p className="empty-cart"> Uh oh, your cart is empty.</p>;
+    }
     return cart.map((order, index) => {
       let product = order.product;
       return (
-        // <div className="cart-row" key={index}>
-        //   <div>Widget: </div>
-        //   <div>{product.category}</div>
-        //   <div>{product.name}</div>
-        //   <div>{product.size}</div>
-        //   <div>{product.finish}</div>
-        //   <div>{order.quantity}</div>
-        // </div>
-        <div className="card cart-row">
+        <div key={index} className="card cart-row">
           <div className="product-profile">
             <div className="product-name">{product.name}</div>
             <div className="product-logo" style={{ color: product.finish }}>
@@ -55,8 +80,13 @@ class Cart extends Component {
     const { cart } = this.props;
     return (
       <div className="cart">
-        <div className="product-cart">
-          <a className="cart-add-button" onClick={this.orderProducts(cart)}>
+        <div
+          className={cart.length === 0 ? 'product-cart hidden' : 'product-cart'}
+        >
+          <a
+            className="cart-add-button"
+            onClick={() => this.orderProducts(cart)}
+          >
             Order
           </a>
         </div>

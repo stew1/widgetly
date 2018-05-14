@@ -108,6 +108,23 @@ body,
 
 .search-bar {
   margin-bottom: 20px;
+  padding: 5px;
+  height: 25px;
+  width: 80%;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 32px;
+}
+
+.hidden {
+  display: none;
+}
+
+.warning {
+  font-size: 11px;
+  color: red;
 }
 
 .filter-panel {

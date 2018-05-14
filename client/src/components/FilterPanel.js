@@ -53,10 +53,16 @@ class FilterPanel extends Component {
   }
 
   render() {
-    const { widgets } = this.props;
+    const { widgets, search } = this.props;
     return (
       <div className="filter-panel">
-        <input className="search-bar" />
+        <input
+          className="search-bar"
+          type="text"
+          value={search ? search : ''}
+          placeholder="Search"
+          onChange={this.props.handleSearchChange}
+        />
         <form className="filter-form">
           <div>Categories</div>
           {this.renderCategoryFilters(widgets)}
