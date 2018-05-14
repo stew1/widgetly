@@ -5,6 +5,6 @@
   "scripts": {
     "start": "node server/bin/www",
     "heroku-postbuild":
-      "cd ../client && npm install --only=dev && npm install && npm run build"
+      "cd client && npm install --only=dev && npm install && npm run build"
   }
 }
