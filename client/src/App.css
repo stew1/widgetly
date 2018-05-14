@@ -131,15 +131,13 @@ body,
   padding-top: 25px;
 }
 
-.inventory-row,
-.cart-row {
+.inventory-row {
   display: flex;
   padding-bottom: 10px;
 }
 
 .cart-row {
-  flex-direction: column;
-  align-items: center;
+  border-bottom: 1px solid black;
 }
 
 .inventory-row div {

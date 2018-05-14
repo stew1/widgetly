@@ -22,7 +22,7 @@ https://widgetly.herokuapp.com/
 * mysql -u root -p < widgetly-dump.sql
 * cd ../server
 * npm install
-* PORT=3001 node bin/www
+* PORT=3001 DATABASE_USER=widgetly-user DATABASE_PASS=w1dg3tly DATABASE=widgetly npm run watch
 * cd ../client
 * npm start
 * localhost:3000

@@ -9,7 +9,7 @@ router.post('/create', function(req, res, next) {
 
   req.body.orders.forEach(order => {
     var values = [[order.productID, order.quantity]];
-    var query1 = 'INSERT INTO `Widgetly`.`Order` () VALUES ();';
+    var query1 = 'INSERT INTO `Widgetly`.`Orders` () VALUES ();';
     var query2 =
       'INSERT INTO `Widgetly`.`OrderProduct` (`productID`,`quanity`) VALUES ?;';
 
